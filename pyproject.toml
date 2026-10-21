@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "local-rag-research-assistant"
+version = "0.1.0"
+description = "A local educational RAG assistant for scientific documents"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "chromadb>=1,<2",
+    "langchain-chroma>=1,<2",
+    "langchain-community>=0.4,<0.5",
+    "langchain-core>=1,<2",
+    "langchain-huggingface>=1,<2",
+    "langchain-ollama>=1,<2",
+    "langchain-text-splitters>=1,<2",
+    "PyMuPDF>=1.26,<2",
+    "sentence-transformers>=6,<7",
+    "streamlit>=1.65,<2",
+    "torch>=2.12,<3",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
