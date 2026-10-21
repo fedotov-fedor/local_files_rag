@@ -2,7 +2,6 @@
 
 Простой полностью локальный RAG по файлам PDF, TXT и Markdown.
 
-В проекте оставлена только рабочая версия на готовых компонентах:
 
 - LangChain связывает загрузчики, splitter, Chroma, prompt и Ollama;
 - SentenceTransformers создаёт embeddings локально на GPU;
@@ -10,7 +9,6 @@
 - Ollama запускает локальную LLM;
 - Streamlit показывает интерфейс, ответ и источники.
 
-Облачные API и ключи не нужны.
 
 ## Файлы проекта
 
@@ -21,9 +19,6 @@ src/rag_langchain/settings.py  все основные настройки
 data/                          локальные документы
 storage/                       локальный индекс Chroma
 ```
-
-Тестов, собственных классов, manifest-файлов и дополнительных архитектурных
-слоёв в этой версии нет.
 
 ## Установка
 
@@ -117,8 +112,7 @@ LangChain здесь является слоем готовых компонен
 - `StrOutputParser` превращает ответ модели в обычную строку;
 - оператор `|` собирает компоненты в LCEL chain.
 
-LangChain сам не является LLM, embedding-моделью или базой данных. Он даёт
-единые интерфейсы и связывает эти компоненты.
+LangChain даёт единые интерфейсы и связывает эти компоненты.
 
 ## Что делает Chroma
 
@@ -129,7 +123,7 @@ Chroma — persistent vector store. В collection для каждого chunk х
 - metadata: имя файла и страница;
 - внутренний индекс nearest-neighbor search.
 
-При вопросе Chroma не генерирует ответ. Она получает query embedding, ищет
+При вопросе Chroma получает query embedding, ищет
 ближайшие document embeddings и возвращает соответствующие chunks. Генерацией
 занимается LLM через Ollama.
 
@@ -143,8 +137,7 @@ passage: текст chunk
 ```
 
 В `settings.py` это передано готовому `HuggingFaceEmbeddings` через
-`query_encode_kwargs` и `encode_kwargs`. Собственный embedding-класс для этого
-не нужен.
+`query_encode_kwargs` и `encode_kwargs`. 
 
 ## Основные настройки
 
